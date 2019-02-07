@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+        location="C:/Users/matt/.m2/repository/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar" />
+    <context id="moneynote_mybatis_generator"
+        defaultModelType="flat" targetRuntime="MyBatis3Simple">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+        <jdbcConnection
+            connectionURL="jdbc:mysql://localhost:3306/moneynote"
+            driverClass="com.mysql.cj.jdbc.Driver" password="12345"
+            userId="matt">
+            <property name="nullCatalogMeansCurrent"
+                value="true" />
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true" />
+        </javaTypeResolver>
+        <javaModelGenerator
+            targetPackage="idv.matt.entity"
+            targetProject="moneynote/src/main/java" />
+        <sqlMapGenerator targetPackage="idv.matt.mapper"
+            targetProject="moneynote/src/main/java" />
+        <javaClientGenerator
+            targetPackage="idv.matt.dao"
+            targetProject="moneynote/src/main/java" type="XMLMAPPER" />
+        <table tableName="member">
+            <columnOverride column="member_id"
+                javaType="java.lang.Long" jdbcType="BIGINT" />
+        </table>
+        <table tableName="expense_record">
+            <columnOverride column="expense_id"
+                javaType="java.lang.Long" jdbcType="BIGINT" />
+            <columnOverride column="member_id"
+                javaType="java.lang.Long" jdbcType="BIGINT" />
+        </table>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="idv.matt.dao.MemberMapper">
+  <resultMap id="BaseResultMap" type="idv.matt.entity.Member">
+    <id column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="member_account" jdbcType="VARCHAR" property="memberAccount" />
+    <result column="member_password" jdbcType="VARCHAR" property="memberPassword" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="member_status" jdbcType="VARCHAR" property="memberStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from member
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="idv.matt.entity.Member">
+    insert into member (member_id, member_account, member_password, 
+      member_name, member_status, create_time, 
+      update_time)
+    values (#{memberId,jdbcType=BIGINT}, #{memberAccount,jdbcType=VARCHAR}, #{memberPassword,jdbcType=VARCHAR}, 
+      #{memberName,jdbcType=VARCHAR}, #{memberStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="idv.matt.entity.Member">
+    update member
+    set member_account = #{memberAccount,jdbcType=VARCHAR},
+      member_password = #{memberPassword,jdbcType=VARCHAR},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      member_status = #{memberStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select member_id, member_account, member_password, member_name, member_status, create_time, 
+    update_time
+    from member
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select member_id, member_account, member_password, member_name, member_status, create_time, 
+    update_time
+    from member
+  </select>
+</mapper>

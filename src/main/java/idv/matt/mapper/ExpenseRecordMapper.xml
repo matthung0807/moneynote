@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="idv.matt.dao.ExpenseRecordMapper">
+  <resultMap id="BaseResultMap" type="idv.matt.entity.ExpenseRecord">
+    <id column="expense_id" jdbcType="BIGINT" property="expenseId" />
+    <id column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="expense_item" jdbcType="VARCHAR" property="expenseItem" />
+    <result column="expense_amount" jdbcType="INTEGER" property="expenseAmount" />
+    <result column="expense_date" jdbcType="DATE" property="expenseDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from expense_record
+    where expense_id = #{expenseId,jdbcType=BIGINT}
+      and member_id = #{memberId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="idv.matt.entity.ExpenseRecord">
+    insert into expense_record (expense_id, member_id, expense_item, 
+      expense_amount, expense_date, create_time, 
+      update_time)
+    values (#{expenseId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{expenseItem,jdbcType=VARCHAR}, 
+      #{expenseAmount,jdbcType=INTEGER}, #{expenseDate,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="idv.matt.entity.ExpenseRecord">
+    update expense_record
+    set expense_item = #{expenseItem,jdbcType=VARCHAR},
+      expense_amount = #{expenseAmount,jdbcType=INTEGER},
+      expense_date = #{expenseDate,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where expense_id = #{expenseId,jdbcType=BIGINT}
+      and member_id = #{memberId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select expense_id, member_id, expense_item, expense_amount, expense_date, create_time, 
+    update_time
+    from expense_record
+    where expense_id = #{expenseId,jdbcType=BIGINT}
+      and member_id = #{memberId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select expense_id, member_id, expense_item, expense_amount, expense_date, create_time, 
+    update_time
+    from expense_record
+  </select>
+</mapper>

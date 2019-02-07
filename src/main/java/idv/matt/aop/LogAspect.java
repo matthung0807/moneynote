@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LogAspect {
-
+    
     @Pointcut("execution(* idv.matt.controller..*(..))")
     public void pointcut() {
     }

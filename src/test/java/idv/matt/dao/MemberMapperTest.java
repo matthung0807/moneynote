@@ -15,13 +15,13 @@ import idv.matt.entity.Member;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { MoneynoteApplication.class })
 @Transactional
-public class MemberMapperTester {
+public class MemberMapperTest {
 
     @Autowired
     private MemberMapper mapper;
 
     @Test
-//    @Rollback
+    @Rollback
     public void testInsert() {
         Member member = new Member();
         member.setMemberAccount("alice@abc.com");

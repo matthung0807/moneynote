@@ -27,7 +27,7 @@ public class RegisterController {
         String jsonString = mapper.writeValueAsString(registerDto);
 
         if (StringUtils.isAnyBlank(registerDto.getMemberAccount(), registerDto.getMemberPassword())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonString);
+            return ResponseEntity.badRequest().body(jsonString);
         }
         
         return ResponseEntity.ok().body(jsonString);
